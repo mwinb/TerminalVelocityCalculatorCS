@@ -4,8 +4,6 @@ using System;
 using System.Collections;
 public class FallingObject
 {
-
-
     public FallingObject(HashTable args)
     {
         this.weight = args["weight"] || 150;
