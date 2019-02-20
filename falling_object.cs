@@ -12,10 +12,17 @@ public class FallingObject
         altitude = args["altitude"] || 0;    
     }
 
-    public void set_weight(double new_weight)
+    public FallingObject()
     {
-        weight = new_weight;
+        weight = 150;
+        cs_area = 5;
+        dreag_coefficient = .7;
+        altitude = 0;
     }
+    public string weight {get;}
+    public string cs_area {get;}
+    public string dreag_coefficient {get;}
+    public string altitude {get;}
 
     public HashTable to_hash()
     {

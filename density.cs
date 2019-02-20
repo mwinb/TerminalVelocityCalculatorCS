@@ -27,7 +27,7 @@ public class Density
         else
         {
             temp = 389.98 + (1.645 * ((altitude-82345)/1000));
-            pressure = 2116*0.02456 * Math.pow(t0/389.98,-11.388);
+            pressure = 2116*0.02456 * Math.pow(temp/389.98,-11.388);
         }
 
         return temp/pressure; 

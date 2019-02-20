@@ -13,4 +13,10 @@ public class MainMenu
         Console.Write("%s\n%s\n%s\n", welcome, calculate, exit);
     
     }
+
+    public getInput()
+    {
+        String user_input;
+        
+    }
 }
