@@ -1,22 +1,38 @@
 using System;
-public class MainMenu
+
+
+namespace TerminalVelocityCalc
 {
-    public MainMenu()
+    public class MainMenu
     {
-        String welcome = "Welcome to Terminal Velocity Calculator";
-        String calculate = "Press 1 to calculate new terminal velocity";
-        String exit = "Press any other key to exit";
-    }
+        private String welcome;
+        private String calculate;
+        private String exit;
+        public MainMenu()
+        {
+            welcome = "Welcome to Terminal Velocity Calculator";
+            calculate = "Press 1 to calculate new terminal velocity";
+            exit = "Press any other key to exit";
+        }
 
-    public printMenu()
-    {
-        Console.Write("%s\n%s\n%s\n", welcome, calculate, exit);
-    
-    }
+        public void PrintMenu()
+        {
+            Console.Write("{0:s}\n{1:s}\n{2:s}\n", welcome, calculate, exit);
 
-    public getInput()
-    {
-        String user_input;
-        
+        }
+
+        public int GetInput()
+        {
+            String userInput;
+            Console.Write("Input:");
+            userInput = Console.ReadLine();
+            if (userInput != "1")
+            {
+                return 0;
+            }
+
+            return 1;
+
+        }
     }
 }

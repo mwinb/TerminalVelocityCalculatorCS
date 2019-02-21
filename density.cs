@@ -1,25 +1,26 @@
 //Source: https://www.grc.nasa.gov/www/k-12/airplane/termv.html
+
 public class Density
 {
-    public Density(double new_altitude)
+    public Density(double newAltitude)
     {
-        altitude = new_altitude;
+        altitude = newAltitude;
     }
 
-    public double calculate_density()
+    public double CalculateDensity()
     {
-        double gas_constant = 1716;
-        double stratosphere_start = 36152;
-        double stratosphere_end = 82345;
+        double gasConstant = 1716;
+        double stratosphereStart = 36152;
+        double stratosphereEnd = 82345;
         double temp;
         double pressure;
 
-        if(altitude <= stratosphere_start)
+        if(altitude <= stratosphereStart)
         {
             temp = 518.6 - (0.00356 * altitude);
             pressure = 2116 * Math.pow(temp/518.6, 5.256);
         }
-        else if (altitude <= stratosphere_end)
+        else if (altitude <= stratosphereEnd)
         {
             temp = 389.98;
             pressure = 2116 * 0.2236 * Math.exp((36000-altitude)/(53.35*389.98));
