@@ -1,44 +1,52 @@
 //Source: https://www.grc.nasa.gov/www/k-12/airplane/termv.html
 
-using System;
-using System.Collections;
+
 
 namespace TerminalVelocityCalc
 {
+    using System;
+    using System.Collections.Generic;
     public class DropItem
     {
         private double weight;
         private double csArea;
         private double dragCoefficient;
         private double altitude;
-        public DropItem(HashTable args)
+        private double density;
+        public DropItem(Dictionary<String, Double> args)
         {
-            weight = args["weight"] || 150;
-            csArea = args["csArea"] || 5;
-            dragCoefficient = args["dragCoefficient"] || .7;
-            altitude = args["altitude"] || 0;
+            weight = args["weight"];
+            csArea = args["csArea"];
+            dragCoefficient = args["dragCoefficient"];
+            altitude = args["altitude"];
+            density = GetDensity();
+
         }
 
         public DropItem()
         {
             weight = 150;
-            cs_area = 5;
-            dreag_coefficient = .7;
+            csArea = 5;
+            dragCoefficient = .7;
             altitude = 0;
+            density = GetDensity();
         }
-        public double weight { get; }
-        public double csArea { get; }
-        public double dragCoefficient { get; }
-        public double altitude { get; }
 
-        public HashTable ToHash()
+        public Dictionary<String, Double> ToDictionary()
         {
-            HashTable dropHash = new HashTable();
-            dropHash.add("weight", weight);
-            dropHash.add("cs_area", csArea);
-            dropHash.add("drag_coefficient", dragCoefficient);
-            dropHash.add("altitude", altitude);
-            return dropItem;
+            Dictionary<String, Double> dropHash = new Dictionary<String, Double>();
+            dropHash.Add("weight", weight);
+            dropHash.Add("csArea", csArea);
+            dropHash.Add("dragCoefficient", dragCoefficient);
+            dropHash.Add("altitude", altitude);
+            dropHash.Add("density", density);
+            return dropHash;
+        }
+
+        private double GetDensity()
+        {
+            Density dens = new Density(altitude);
+            return dens.CalculateDensity();   
         }
 
     }

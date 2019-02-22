@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 
 
 namespace TerminalVelocityCalc
@@ -24,7 +25,10 @@ namespace TerminalVelocityCalc
             int input = GetMenu();
             while(input != 0)
             {
-                
+                DropItem item = new DropItem();
+                TerminalVelocity tv = new TerminalVelocity(item.ToDictionary());
+                Console.WriteLine(tv.calculateTV());
+                input = GetMenu();
             }
             
         }
