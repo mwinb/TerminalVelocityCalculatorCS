@@ -12,7 +12,7 @@ namespace TerminalVelocityCalc
         {
             welcome = "Welcome to Terminal Velocity Calculator";
             calculate = "Press 1 to calculate new terminal velocity";
-            exit = "Press any other key to exit";
+            exit = "Press enter to exit";
         }
 
         public void PrintMenu()

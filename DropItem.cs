@@ -1,40 +1,55 @@
 //Source: https://www.grc.nasa.gov/www/k-12/airplane/termv.html
 
+using System;
+using System.Collections;
 
 
 namespace TerminalVelocityCalc
 {
-    using System;
-    using System.Collections.Generic;
     public class DropItem
     {
-        private double weight;
         private double csArea;
+
         private double dragCoefficient;
         private double altitude;
         private double density;
-        public DropItem(Dictionary<String, Double> args)
+
+        private double weight;
+        public DropItem(Hashtable args)
         {
-            weight = args["weight"];
-            csArea = args["csArea"];
-            dragCoefficient = args["dragCoefficient"];
-            altitude = args["altitude"];
-            density = GetDensity();
+            weight = (double) args["weight"];
+            csArea = (double) args["csArea"];
+            dragCoefficient = (double) args["dragCoefficient"];
+            altitude = (double) args["altitude"];
+            GetDensity();
 
         }
 
         public DropItem()
         {
-            weight = 150;
-            csArea = 5;
-            dragCoefficient = .7;
-            altitude = 0;
-            density = GetDensity();
+            GetWeight();
+            GetArea();
+            GetDragCoeficient();
+            GetAltitude();
+            GetDensity();
+
         }
 
-        public Dictionary<String, Double> ToDictionary()
+        public void printTable()
         {
-            Dictionary<String, Double> dropHash = new Dictionary<String, Double>();
+            Hashtable hash = ToHash();
+        
+            foreach(string key in hash.Keys)
+            {
+                Console.WriteLine(String.Format("{0}: {1}", key, hash[key]));
+            }
+
+
+        }
+
+        public Hashtable ToHash()
+        {
+            Hashtable dropHash = new Hashtable();
             dropHash.Add("weight", weight);
             dropHash.Add("csArea", csArea);
             dropHash.Add("dragCoefficient", dragCoefficient);
@@ -43,10 +58,69 @@ namespace TerminalVelocityCalc
             return dropHash;
         }
 
-        private double GetDensity()
+        private void GetDensity()
         {
             Density dens = new Density(altitude);
-            return dens.CalculateDensity();   
+            density = dens.CalculateDensity();   
+        }
+
+        private void GetWeight()
+        {
+            try
+            {
+                Console.Write("Enter weight in lbs: ");
+                weight = Double.Parse(Console.ReadLine());
+
+            }
+            catch (InvalidCastException)
+            {
+                Console.WriteLine("Input must be a valid weight.");
+                GetWeight();
+            }
+
+        }
+
+        private void GetArea()
+        {
+            try
+            {
+                Console.Write("Enter Cross Sectional Area in sq feet: ");
+                csArea = Double.Parse(Console.ReadLine());
+            }
+            catch (InvalidCastException)
+            {
+                Console.WriteLine("Input must be a valid area.");
+                GetArea();
+            }
+
+        }
+        private void GetDragCoeficient()
+        {
+            try
+            {
+                Console.Write("Enter Drag Coefficient: ");
+                dragCoefficient = Double.Parse(Console.ReadLine());
+            }
+            catch (InvalidCastException)
+            {
+                Console.WriteLine("Input must be a valid number.");
+                GetDragCoeficient();
+            }
+        }
+        private void GetAltitude()
+        {
+            try
+            {
+                Console.Write("Enter Altitude in ft: ");
+                altitude = Double.Parse(Console.ReadLine());
+
+            }
+            catch (InvalidCastException)
+            {
+                Console.WriteLine("Input must be a valid number.");
+                GetAltitude();
+            }
+
         }
 
     }

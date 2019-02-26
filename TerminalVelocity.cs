@@ -1,6 +1,6 @@
 //Source: https://www.grc.nasa.gov/www/k-12/airplane/termv.html
 using System;
-using System.Collections.Generic;
+using System.Collections;
 
 namespace TerminalVelocityCalc
 {
@@ -11,13 +11,13 @@ namespace TerminalVelocityCalc
         public double dragCoefficient;
         public double csArea;
         public double density;
-        public TerminalVelocity(Dictionary<String, Double> args)
+        public TerminalVelocity(Hashtable args)
         {
-            weight = args["weight"];
-            altitude = args["altitude"];
-            dragCoefficient = args["dragCoefficient"];
-            csArea = args["csArea"];
-            density = args["density"];
+            weight = (double) args["weight"];
+            altitude = (double) args["altitude"];
+            dragCoefficient = (double) args["dragCoefficient"];
+            csArea = (double) args["csArea"];
+            density = (double) args["density"];
 
         }
         public double calculateTV()
